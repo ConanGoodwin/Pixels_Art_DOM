@@ -12,7 +12,8 @@ window.onload = function () {
   }
 
   for (let index = 1; index <= pixelBaseAltura ** 2; index += 1) {
-    let tagPixel = criaTag('div','','pixel','style.backgroundColor','rgb(255, 255, 255)');
+    let tagPixel = criaTag('div','','pixel','','');
+    tagPixel.style.backgroundColor = "rgb(255, 255, 255)";
 
     quadroPixel.appendChild(tagPixel);
   }
@@ -40,7 +41,7 @@ function criaTag(tipo, id, classe, atributo, valor) {
   }
 
   if (atributo != '') {
-    tag.setAttribute(atributo, valor);
+    tag[atributo] = valor;
   }
 
   return tag;
