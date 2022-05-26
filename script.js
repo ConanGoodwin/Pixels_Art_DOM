@@ -26,17 +26,9 @@ function pintaPixel(evento) {
 }
 
 function limpaTodosPixels() {
-  // const todosPixels = document.getElementsByClassName('pixel');
-
   for (let index = 0; index < todosPixels.length; index += 1) {
     todosPixels[index].className = 'pixel white';
   }
-}
-
-function retiraNumeroNegativo(evento) {
-  // if (!Math.sign(evento.key)) {
-  //   evento.preventDefault();
-  // }
 }
 
 function criaTag(tipo, id, classe) {
@@ -68,7 +60,11 @@ function novaGradePixels() {
   if (txtTamanho.value === '') {
     window.alert('Board inválido!');
   } else {
-    let base = parseInt(txtTamanho.value);
+    if (parseInt(txtTamanho.value) < 5) {
+      txtTamanho.value = 5;
+    } else if (parseInt(txtTamanho.value) > 50) {
+      txtTamanho.value = 50;
+    }
     
     while (todosPixels.length > 0) {
       quadroPixel.removeChild(todosPixels[0]);
@@ -85,7 +81,6 @@ window.onload = function () {
   btnLimpar.innerText = 'Limpar';
   btnLimpar.addEventListener('click', limpaTodosPixels);
   btnTamanho.addEventListener('click', novaGradePixels);
-  txtTamanho.addEventListener('keydown', retiraNumeroNegativo);
 
   for (let index = 0; index < corPaleta.length; index += 1) {
     corPaleta[index].addEventListener('click', selecionaCor);
