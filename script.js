@@ -65,12 +65,29 @@ function novaGradePixels() {
     } else if (parseInt(txtTamanho.value) > 50) {
       txtTamanho.value = 50;
     }
-    
+
     while (todosPixels.length > 0) {
       quadroPixel.removeChild(todosPixels[0]);
     }
 
     geraGradePixels(parseInt(txtTamanho.value));
+  }
+}
+
+function geraInteiroRandomicoRGB() {
+  const UnidadeR = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+  const UnidadeG = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+  const UnidadeB = Math.floor(Math.random() * (255 - 0 + 1)) + 0;
+
+  return `rgb(${UnidadeR}, ${UnidadeG}, ${UnidadeB})`;
+}
+
+function corAleatoriaPaleta() {
+  const sheetList = document.styleSheets[0];
+
+  for (let index = 1; index < corPaleta.length; index += 1) {
+    corPaleta[index].className = `color corAleatoria${index}`;
+    sheetList.insertRule(`.corAleatoria${index} { background-color: ${geraInteiroRandomicoRGB()}; }`, 0);
   }
 }
 
@@ -85,6 +102,8 @@ window.onload = function () {
   for (let index = 0; index < corPaleta.length; index += 1) {
     corPaleta[index].addEventListener('click', selecionaCor);
   }
+
+  corAleatoriaPaleta();
 
   geraGradePixels(5);
 };
