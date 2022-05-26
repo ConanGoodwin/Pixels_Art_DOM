@@ -1,6 +1,8 @@
-const pixelBaseAltura = 5;
 const corPincel = document.getElementById('pincel');
 const corPaleta = document.getElementsByClassName('color');
+const txtTamanho = document.getElementById('board-size');
+const quadroPixel = document.getElementById('pixel-board');
+const todosPixels = document.getElementsByClassName('pixel');
 
 corPaleta[0].className += ' selected';
 corPincel.className = 'black';
@@ -21,15 +23,20 @@ function pintaPixel(evento) {
   evento.target.className = `pixel${cor.className
     .replace('color', '')
     .replace(' selected', '')}`;
-  console.log(cor.className);
 }
 
 function limpaTodosPixels() {
-  const todosPixels = document.getElementsByClassName('pixel');
+  // const todosPixels = document.getElementsByClassName('pixel');
 
   for (let index = 0; index < todosPixels.length; index += 1) {
     todosPixels[index].className = 'pixel white';
   }
+}
+
+function retiraNumeroNegativo(evento) {
+  // if (!Math.sign(evento.key)) {
+  //   evento.preventDefault();
+  // }
 }
 
 function criaTag(tipo, id, classe) {
@@ -46,16 +53,8 @@ function criaTag(tipo, id, classe) {
   return tag;
 }
 
-window.onload = function () {
-  const quadroPixel = document.getElementById('pixel-board');
-  const btnLimpar = document.getElementById('clear-board');
-
-  btnLimpar.innerText = 'Limpar';
-  btnLimpar.addEventListener('click', limpaTodosPixels);
-
-  for (let index = 0; index < corPaleta.length; index += 1) {
-    corPaleta[index].addEventListener('click', selecionaCor);
-  }
+function geraGradePixels(pixelBaseAltura) {
+  quadroPixel.style.width = `${40 * pixelBaseAltura + 2 * pixelBaseAltura}px`;
 
   for (let index = 1; index <= pixelBaseAltura ** 2; index += 1) {
     const tagPixel = criaTag('div', '', 'pixel white');
@@ -63,4 +62,34 @@ window.onload = function () {
 
     quadroPixel.appendChild(tagPixel);
   }
+}
+
+function novaGradePixels() {
+  if (txtTamanho.value === '') {
+    window.alert('Board inválido!');
+  } else {
+    let base = parseInt(txtTamanho.value);
+    
+    while (todosPixels.length > 0) {
+      quadroPixel.removeChild(todosPixels[0]);
+    }
+
+    geraGradePixels(parseInt(txtTamanho.value));
+  }
+}
+
+window.onload = function () {
+  const btnLimpar = document.getElementById('clear-board');
+  const btnTamanho = document.getElementById('generate-board');
+
+  btnLimpar.innerText = 'Limpar';
+  btnLimpar.addEventListener('click', limpaTodosPixels);
+  btnTamanho.addEventListener('click', novaGradePixels);
+  txtTamanho.addEventListener('keydown', retiraNumeroNegativo);
+
+  for (let index = 0; index < corPaleta.length; index += 1) {
+    corPaleta[index].addEventListener('click', selecionaCor);
+  }
+
+  geraGradePixels(5);
 };
