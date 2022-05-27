@@ -8,19 +8,19 @@ corPaleta[0].className += ' selected';
 corPincel.className = 'black';
 
 function selecionaCor(evento) {
-  const corSelecionada = evento.target;
+  const divAreceberSelecao = evento.target;
+  const corSelecionadaAtual = document.querySelector('.selected');
 
-  for (let index = 0; index < corPaleta.length; index += 1) {
-    corPaleta[index].classList.remove('selected');
-  }
-  corPincel.className = corSelecionada.className.replace('color ', '');
-  evento.target.classList.add('selected');
+  corSelecionadaAtual.classList.remove('selected');
+  corPincel.className = divAreceberSelecao.className.replace('color ', '');
+  divAreceberSelecao.classList.add('selected');
 }
 
 function pintaPixel(evento) {
+  const alvo = evento.target;
   const cor = document.querySelector('.selected');
 
-  evento.target.className = `pixel${cor.className
+  alvo.className = `pixel${cor.className
     .replace('color', '')
     .replace(' selected', '')}`;
 }
