@@ -3,6 +3,14 @@
   src: url(./fontes/AttackGraffiti-3zRBM.ttf);
 }
 
+body {
+  background-image: url(./imagens/pixelArt.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-size: 100% 100%;
+}
+
 h1 {
   font-family: Grafite;
   font-weight: lighter;
