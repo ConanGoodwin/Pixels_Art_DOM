@@ -11,20 +11,25 @@
 
 <body>
   <h1 id="title">Paleta de Cores</h1>
-  <div id="color-palette">
-    <div class="color black"></div>
-    <div class="color red"></div>
-    <div class="color green"></div>
-    <div class="color blue"></div>
-    Pincel:
-    <div id="pincel"></div>
-  </div>
-  <div>
-    <input type="number" min="1" id="board-size">
-    <button id="generate-board">VQV</button>
-  </div>
-  <button id="clear-board"></button>
-  <div id="pixel-board"></div>
+  <header class="margemCurta">
+    <div id="color-palette">
+      <div class="color black"></div>
+      <div class="color red"></div>
+      <div class="color green"></div>
+      <div class="color blue"></div>
+      Pincel:
+      <div id="pincel"></div>
+    </div>
+  </header>
+
+  <main>
+    <div>
+      <input type="number" min="1" id="board-size">
+      <button id="generate-board">VQV</button>
+    </div>
+    <button id="clear-board" class="margemCurta"></button>
+    <div id="pixel-board" class="margemCurta"></div>
+  </main> 
 
   <script src="script.js"></script>
 </body>
