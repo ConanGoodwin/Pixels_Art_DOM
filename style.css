@@ -1,3 +1,13 @@
+@font-face {
+  font-family: Grafite;
+  src: url(./fontes/AttackGraffiti-3zRBM.ttf);
+}
+
+h1 {
+  font-family: Grafite;
+  font-weight: lighter;
+}
+
 .margemCurta {
   margin: 5px;
 }
